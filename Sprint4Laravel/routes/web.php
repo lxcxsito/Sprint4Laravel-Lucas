@@ -6,14 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CreateReviewController;
-
-
-
 use App\Http\Controllers\CartController;
-
 use App\Http\Controllers\CreateCategoryController;
 use App\Http\Controllers\ListGamesController;
 use App\Http\Controllers\CreateGameController;
+use App\Http\Controllers\BuyGameController;
     
 //User Routes GET
 Route::get('/register', action: [RegisterController::class, 'index']) -> name('register.index');
@@ -26,9 +23,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 
-//Games
-Route::get('/cart' , action : [CartController::class , 'index']) -> name('cart.index');
-
 
 //Reviews routes
 Route::get('/reviews', action: [ReviewController::class, 'index']) -> name('review.index');
@@ -39,6 +33,9 @@ Route::post('/games/{game}/reviews', [CreateReviewController::class, 'createRevi
 
 //Games Routes
 Route::get('/listGames', action: [ListGamesController::class, 'index']) -> name('listGames.index');
+Route::get('/cart' , action : [CartController::class , 'index']) -> name('cart.index');
+Route::get('/{game}/buyGame', [BuyGameController::class, 'show']) ->name('buyGame.show');
+Route::post('/{game}/buyGame', [BuyGameController::class, 'buyGame']) ->name('buyGame.buy');
 
 //ONLY ADMIN
 Route::get('/games/create', [CreateGameController::class, 'index'])->name('createGame.index');
