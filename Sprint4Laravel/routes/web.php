@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CreateReviewController;
+use App\Http\Controllers\CreateCategoryController;
 use App\Http\Controllers\ListGamesController;
 use App\Http\Controllers\CreateGameController;
     
@@ -33,5 +34,7 @@ Route::get('/listGames', action: [ListGamesController::class, 'index']) -> name(
 //ONLY ADMIN
 Route::get('/games/create', [CreateGameController::class, 'index'])->name('createGame.index');
 Route::post('/games/create', [CreateGameController::class, 'store'])->name('createGame.store');
+Route::get('/category/create', [CreateCategoryController::class, 'index'])->name('createCategory.index');
+Route::post('/category/create', [CreateCategoryController::class, 'createCategory'])->name('createCategory.createCategory');
 
 ?>
