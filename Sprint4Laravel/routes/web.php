@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+
 
     
 //User Routes GET
 Route::get('/register', action: [RegisterController::class, 'index']) -> name('register.index');
 Route::get('/login', action: [LoginController::class, 'index']) -> name('login.index');
+Route::get('/logout', action:[LogoutController::class,'index']) -> name('logout.index');
 
 
 //User routes POST
