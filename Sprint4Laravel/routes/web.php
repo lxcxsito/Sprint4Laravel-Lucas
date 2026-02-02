@@ -6,6 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CreateReviewController;
+
+
+
+use App\Http\Controllers\CartController;
+
 use App\Http\Controllers\CreateCategoryController;
 use App\Http\Controllers\ListGamesController;
 use App\Http\Controllers\CreateGameController;
@@ -19,6 +24,10 @@ Route::get('/logout', action:[LogoutController::class,'index']) -> name('logout.
 //User routes POST
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+
+//Games
+Route::get('/cart' , action : [CartController::class , 'index']) -> name('cart.index');
 
 
 //Reviews routes
