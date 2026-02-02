@@ -11,7 +11,8 @@ use App\Http\Controllers\CreateCategoryController;
 use App\Http\Controllers\ListGamesController;
 use App\Http\Controllers\CreateGameController;
 use App\Http\Controllers\BuyGameController;
-    
+use App\Http\Controllers\HomeController;
+
 //User Routes GET
 Route::get('/register', action: [RegisterController::class, 'index']) -> name('register.index');
 Route::get('/login', action: [LoginController::class, 'index']) -> name('login.index');
@@ -22,6 +23,9 @@ Route::get('/logout', action:[LogoutController::class,'index']) -> name('logout.
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
+
+// HOME
+Route::get('/', action: [HomeController::class, 'index']) -> name('home.index');
 
 
 //Reviews routes
