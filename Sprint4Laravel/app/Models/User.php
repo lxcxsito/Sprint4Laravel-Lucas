@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    CONST ROLE_ADMIN = "admin";
+    CONST ROLE_USER = "user";
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -21,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'avatar',
     ];
 
     /**
@@ -44,5 +49,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function games(){
+        return $this -> belongsToMany(Game::class, 'purchases') 
+                     -> withPivot('purchase_date') 
+                     -> withTimestamps();
+    }
+    
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
