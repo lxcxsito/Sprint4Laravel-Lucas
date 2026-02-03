@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Review;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,21 +20,27 @@ class CreateReviewController extends Controller
 
     public function createReview(Request $request, Game $game)
     {
-        $request->validate([
-            'description' => 'required|min:10',
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
+        try{
+            $request->validate([
+                        'description' => 'required|min:10',
+                        'rating' => 'required|integer|min:1|max:5',
+                    ]);
 
-        Review::create([
-            'user_id' => Auth::id(),
-            'game_id' => $game->id,
-            'comment' => $request->description,
-            'rating' => $request->rating,
-        ]);
+                    Review::create([
+                        'user_id' => Auth::id(),
+                        'game_id' => $game->id,
+                        'comment' => $request->description,
+                        'rating' => $request->rating,
+                    ]);
+                    
+                    return redirect() ->route('games.reviews', $game)
+                    ->with('success', 'Review created successfully!');
+        }catch(Exception $e){
+             return redirect()
+            ->route('home.index', $game)->with('failed', 'You can only do one review for game');
+        }
+       
 
-        return redirect()
-            ->route('games.reviews', $game)
-            ->with('success', 'Review created successfully!');
     }
 }
 
